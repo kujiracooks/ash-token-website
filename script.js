@@ -1,5 +1,3 @@
-const CONFIG={launch:"2026-08-19T17:00:00Z",ca:"",pump:""};
-
 const archives=[
 ["001","DEC 2024","VINTAGE ASH TEA","THEY MADE A PETITION 😭","A Change.org petition called for Ash Trevino to be removed from social media. Claims in the petition remain attributed to its authors.","https://www.change.org/p/ban-ash-trevino-remove-from-social-media"],
 
@@ -22,41 +20,15 @@ const archives=[
 ["010","TUBI","FULL EPISODE","THE TUBI FILE","A full-length episode focused on Ash Trevino and the online spectacle surrounding her.","https://tubitv.com/tv-shows/200311837/s02-e01-ash-trevino-the-tiktok-live-human-disaster"]
 ];
 
-document.getElementById("grid").innerHTML=archives.map(x=>`<article class="card"><div class="thumb">ARCHIVE #${x[0]}</div><div class="meta"><span>${x[2]}</span><span>${x[1]}</span></div><h3>${x[3]}</h3><p>${x[4]}</p><a href="${x[5]}" target="_blank" rel="noopener">VIEW THE RECEIPT →</a></article>`).join("");
-
-function tick(){
-let d=new Date(CONFIG.launch)-new Date(),
-el=document.getElementById("clock");
-
-if(d<=0){
-el.textContent="00 : 00 : 00 : 00";
-
-if(CONFIG.ca){
-document.getElementById("ca").textContent=CONFIG.ca;
-document.getElementById("ca2").textContent=CONFIG.ca;
-}
-
-if(CONFIG.pump){
-let p=document.getElementById("pump");
-p.href=CONFIG.pump;
-p.classList.remove("disabled");
-p.textContent="VIEW ON PUMP.FUN →";
-}
-
-return;
-}
-
-let D=Math.floor(d/864e5);
-d%=864e5;
-let H=Math.floor(d/36e5);
-d%=36e5;
-let M=Math.floor(d/6e4);
-let S=Math.floor(d%6e4/1e3);
-
-el.textContent=[D,H,M,S]
-.map(n=>String(n).padStart(2,"0"))
-.join(" : ");
-}
-
-tick();
-setInterval(tick,1000);
+document.getElementById("grid").innerHTML=archives.map(x=>`
+<article class="card">
+  <div class="thumb">ARCHIVE #${x[0]}</div>
+  <div class="meta">
+    <span>${x[2]}</span>
+    <span>${x[1]}</span>
+  </div>
+  <h3>${x[3]}</h3>
+  <p>${x[4]}</p>
+  <a href="${x[5]}" target="_blank" rel="noopener">VIEW THE RECEIPT →</a>
+</article>
+`).join("");
